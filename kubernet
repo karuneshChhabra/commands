@@ -1,0 +1,7 @@
+SECRET_RESOURCE=$(kubectl get secrets -n kube-system -o name | grep dash-kubernetes-dashboard-token)
+ENCODED_TOKEN=$(kubectl get $SECRET_RESOURCE -n kube-system -o=jsonpath='{.data.token}')
+export TOKEN=$(echo $ENCODED_TOKEN | base64 --decode)
+echo ""
+echo "--- Copy and paste this token for dashboard access ---"
+echo -e $COLOR_LIGHT_GREEN
+                                                                                              ~                           
